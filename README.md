@@ -164,7 +164,7 @@ Complicate the basic CRUD proposed by managing more resources and establishing r
 
 It is possible to propose any other optional features to the professor. A score will be agreed upon with the group of students based on their number of members.
 
-## 📝 Increment of maximum ratings
+## 📝 Grading of features
 
 | Feature                      | 2 students | 3 students | 4 students | 5 students | 6 students |
 | ---------------------------- | ---------- | ---------- | ---------- | ---------- | ---------- |
