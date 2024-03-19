@@ -16,7 +16,7 @@ In this group project, we aim to implement a simplified version of the HTTP prot
 
 The project involves developing from scratch, using only transport layer network libraries, a basic HTTP client and server. This client and server should operate between themselves but also, by adhering to the protocol standard, interoperate with any other "real" client or server.
 
-Unless the optional GUI functionality is implemented, the client will be a command-line program, more or less interactive depending on the optional functionalities decided to be implemented. In summary, a program capable of launching HTTP messages and processing the response messages to these requests is expected.
+Unless the optional GUI feature is implemented, the client will be a command-line program, more or less interactive depending on the optional features decided to be implemented. In summary, a program capable of launching HTTP messages and processing the response messages to these requests is expected.
 
 On the other hand, the HTTP server will be a program capable of receiving HTTP requests and reacting to them, updating its internal state and responding with various web objects as necessary. The HTTP server is a program that must always be available to receive requests, whether from one or more clients, sequentially or concurrently, and whether some are unsuccessful and others are successful.
 
@@ -33,7 +33,7 @@ The project delivery consists of two elements:
 
 ### Evaluation
 
-The project evaluation will be based on a maximum possible grade chosen by the group itself. This grade will be determined by the optional functionalities implemented. The score that these functionalities will add varies depending on the number of group members, between two and six, with the recommended option being to form groups of between three and five students. In addition, there will be a series of mandatory functionalities that must be implemented in any case to pass the project.
+The project evaluation will be based on a maximum possible grade chosen by the group itself. This grade will be determined by the optional features implemented. The score that these features will add varies depending on the number of group members, between two and six, with the recommended option being to form groups of between three and five students. In addition, there will be a series of mandatory features that must be implemented in any case to pass the project.
 
 The evaluation will be based on the correctness of the technical report and the code available in the latest version of the code repository, as well as a live demo that the group will have to perform. During this demo, the teacher may discretionally ask students any questions deemed appropriate. The live demo can be scheduled at any time the group wishes, but no later than **May 24, 2024**. The technical report and the code repository must be delivered at that time.
 
@@ -41,17 +41,15 @@ Original, very high-quality code is expected, following good practices, appropri
 
 It is allowed to use generative AI tools such as ChatGPT for information seeking and research, but if done, it must be specified. Both the report and the code will be subjected to a heuristic check to determine if it has been generated with generative AI. If so and not explicitly indicated, it will result in the lab being graded with "0".
 
-## Mandatory functionalities
+## Mandatory features
 
-**All** of the following functionalities are mandatory for **all** groups, regardless of their number of members. The maximum score they can contribute will vary based on the number of members as detailed in the attached table.
+**All** of the following features are mandatory for **all** groups, regardless of their number of members. The maximum score they can contribute will vary based on the number of members as detailed in the attached table.
 
-For proper project development, it is essential to implement the mandatory functionalities **before** starting with the optional ones.
+For proper project development, it is essential to implement the mandatory features **before** starting with the optional ones.
 
 ### HTTP Client
 
-The program that interacts as an HTTP client must be able to execute the following
-
-functionalities:
+The program that interacts as an HTTP client must be able to execute the following features:
 
 - Send HTTP requests, in a way that:
   - It is possible to choose the URL to which the request will be sent
@@ -82,9 +80,9 @@ The HTTP server must be able to do the following:
 
 The nature of the resources managed by the server is up to the group's discretion, as well as the static contents it serves. For example, a group that likes kittens could focus its server on this theme and serve a simple HTML web page about a cat shelter in `/adoption.html` and manage a series of kitten resources (e.g., `{name: "Hercules", breed: "European", age: 3}`) through the `/cats` endpoint, so that it is possible to register new cats for adoption, delete them when they are adopted, modify them, and list them.
 
-## Optional functionalities
+## Optional features
 
-The following functionalities are optional and allow increasing the maximum possible grade that the student can opt for. **Always** the basic functionalities must be finished before starting with the advanced ones.
+The following features are optional and allow increasing the maximum possible grade that the student can opt for. **Always** the basic features must be finished before starting with the advanced ones.
 
 ### Authentication with API key
 
@@ -163,13 +161,13 @@ Complicate the basic CRUD proposed by managing more resources and establishing r
 
 **Difficulty:** ???
 
-It is possible to propose any other optional functionality to the professor. A score will be agreed upon with the group of students based on their number of members.
+It is possible to propose any other optional features to the professor. A score will be agreed upon with the group of students based on their number of members.
 
 ## Increment of maximum ratings
 
-| Functionality                | 2 students | 3 students | 4 students | 5 students | 6 students |
+| Feature                      | 2 students | 3 students | 4 students | 5 students | 6 students |
 | ---------------------------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-| Mandatory functionalities    | +8 pts.    | +7 pts.    | +6 pts.    | +5 pts.    | + 4 pts.   |
+| Mandatory features           | +8 pts.    | +7 pts.    | +6 pts.    | +5 pts.    | + 4 pts.   |
 | API key                      | +1 pts.    | +0.8 pts.  | +0.6 pts.  | +0.4 pts.  | + 0.3 pts. |
 | Login flow                   | +3 pts.    | +2.7 pts.  | +2.3 pts.  | +2 pts.    | + 1.8 pts. |
 | Multimedia messages          | +2 pts.    | +1.7 pts.  | +1.3 pts.  | +1 pts.    | + 0.8 pts. |
@@ -183,7 +181,7 @@ It is possible to propose any other optional functionality to the professor. A s
 | Cookies                      | +1 pts.    | +0.8 pts.  | +0.6 pts.  | +0.4 pts.  | + 0.3 pts. |
 | Advanced CRUD                | +1 pts.    | +0.8 pts.  | +0.6 pts.  | +0.4 pts.  | + 0.3 pts. |
 
-## Proposed work plan for mandatory functionalities
+## Proposed work plan for mandatory features
 
 The project is broad and can be challenging, but it is entirely solvable by students of our degree and represents a great opportunity to learn new things. For those groups that feel somewhat overwhelmed and unclear on how to start the project, this work structure is proposed:
 
