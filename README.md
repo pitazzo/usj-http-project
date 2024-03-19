@@ -207,8 +207,6 @@ The project is broad and can be challenging, but it is entirely solvable by stud
 
 4. Enable in our HTTP server, using our "server library," a first endpoint that statically returns an HTML file read from disk.
 
-5. Implement the CRUD in a basic way by adding
-
-more endpoints and simple in-memory persistence
+5. Implement the CRUD in a basic way by adding more endpoints and simple in-memory persistence
 
 6. Address possible error cases
