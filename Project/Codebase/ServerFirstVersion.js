@@ -9,14 +9,36 @@ const server = net.createServer((socket) => {
     console.log('Cliente conectado');
 
     socket.on('data', (data) => {
-        console.log('Solicitud recibida:\n', data.toString());
-
-        // Analizar la solicitud HTTP (muy básico)
         const request = data.toString();
+        console.log('Solicitud recibida:\n', request);
 
-        // Responder con un mensaje HTTP
-        const response = `HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<h1>¡Hola desde el servidor HTTP!</h1>`;
-        socket.write(response);
+        // Separar los encabezados del cuerpo de la solicitud (si existe)
+        const [requestHeaders, body] = request.split('\r\n\r\n');
+
+        // Analizar el método HTTP
+        const [method, path] = requestHeaders.split(' ');
+
+        // Manejar la solicitud según el método HTTP (GET o POST)
+        if (method === 'GET') {
+            // Responder con un archivo o mensaje estático para GET
+            if (path === '/index.html') {
+                const response = `HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<h1>¡Bienvenido a mi servidor HTTP!</h1>`;
+                socket.write(response);
+            } else {
+                const response = `HTTP/1.1 404 Not Found\r\n\r\n<h1>Recurso no encontrado</h1>`;
+                socket.write(response);
+            }
+        } else if (method === 'POST') {
+            // Procesar datos recibidos con POST
+            console.log('Datos recibidos en POST:', body);
+
+            const response = `HTTP/1.1 201 Created\r\nContent-Type: text/html\r\n\r\n<h1>Recurso creado</h1>`;
+            socket.write(response);
+        } else {
+            // Responder con un error si el método no es GET o POST
+            const response = `HTTP/1.1 405 Method Not Allowed\r\n\r\n<h1>Metodo no permitido</h1>`;
+            socket.write(response);
+        }
 
         // Cerrar la conexión
         socket.end();
