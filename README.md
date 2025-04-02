@@ -35,7 +35,7 @@ The project delivery consists of two elements:
 
 The project evaluation will be based on a maximum possible grade chosen by the group itself. This grade will be determined by the optional features implemented. The score that these features will add varies depending on the number of group members, between two and six, with the recommended option being to form groups of between three and five students. In addition, there will be a series of mandatory features that must be implemented in any case to pass the project.
 
-The evaluation will be based on the correctness of the technical report and the code available in the latest version of the code repository, as well as a live demo that the group will have to perform. During this demo, the professor may discretionally ask students any questions deemed appropriate. The live demo can be scheduled at any time the group wishes, but no later than **May 24, 2024**. The technical report and the code repository must be delivered at that time.
+The evaluation will be based on the correctness of the technical report and the code available in the latest version of the code repository, as well as a live demo that the group will have to perform. During this demo, the professor may discretionally ask students any questions deemed appropriate. The live demo can be scheduled at any time the group wishes, but no later than **May 21, 2025**. The technical report and the code repository must be delivered at that time.
 
 Original, very high-quality code is expected, following good practices, appropriate design patterns, good formatting, and good naming. This will be especially taken into account during the evaluation.
 
