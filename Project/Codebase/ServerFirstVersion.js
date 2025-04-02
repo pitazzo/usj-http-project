@@ -1,10 +1,10 @@
 const net = require('net');
+const fs = require('fs');
+const path = require('path');
 
-// Definir la dirección y el puerto del servidor
 const HOST = '127.0.0.1';
 const PORT = 8080;
 
-// Crear un servidor TCP
 const server = net.createServer((socket) => {
     console.log('Cliente conectado');
 
@@ -12,36 +12,57 @@ const server = net.createServer((socket) => {
         const request = data.toString();
         console.log('Solicitud recibida:\n', request);
 
-        // Separar los encabezados del cuerpo de la solicitud (si existe)
         const [requestHeaders, body] = request.split('\r\n\r\n');
+        const [requestLine, ...headerLines] = requestHeaders.split('\r\n');
+        const [method, pathRequested] = requestLine.split(' ');
 
-        // Analizar el método HTTP
-        const [method, path] = requestHeaders.split(' ');
-
-        // Manejar la solicitud según el método HTTP (GET o POST)
+        // RUTAS PERSONALIZADAS
         if (method === 'GET') {
-            // Responder con un archivo o mensaje estático para GET
-            if (path === '/index.html') {
-                const response = `HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<h1>¡Bienvenido a mi servidor HTTP!</h1>`;
-                socket.write(response);
+            if (pathRequested === '/cat.json') {
+                const filePath = path.join(__dirname, 'cat.json');
+
+                fs.readFile(filePath, (err, fileData) => {
+                    if (err) {
+                        const response = `HTTP/1.1 500 Internal Server Error\r\n\r\n<h1>Error al leer cat.json</h1>`;
+                        socket.write(response);
+                        socket.end();
+                        return;
+                    }
+
+                    const response = `HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-Length: ${fileData.length}\r\n\r\n${fileData}`;
+                    socket.write(response);
+                    socket.end();
+                });
             } else {
-                const response = `HTTP/1.1 404 Not Found\r\n\r\n<h1>Recurso no encontrado</h1>`;
-                socket.write(response);
+                // Si pide otro archivo, intentamos servirlo desde disco (ej. cat.png)
+                const filePath = path.join(__dirname, pathRequested);
+                fs.readFile(filePath, (err, fileData) => {
+                    if (err) {
+                        const response = `HTTP/1.1 404 Not Found\r\n\r\n<h1>Archivo no encontrado</h1>`;
+                        socket.write(response);
+                        socket.end();
+                        return;
+                    }
+
+                    // Detectar tipo MIME por extensión
+                    const ext = path.extname(filePath);
+                    let contentType = 'application/octet-stream';
+                    if (ext === '.html') contentType = 'text/html';
+                    if (ext === '.json') contentType = 'application/json';
+                    if (ext === '.png') contentType = 'image/png';
+                    if (ext === '.mp3') contentType = 'audio/mpeg';
+
+                    const response = `HTTP/1.1 200 OK\r\nContent-Type: ${contentType}\r\nContent-Length: ${fileData.length}\r\n\r\n`;
+                    socket.write(response);
+                    socket.write(fileData);
+                    socket.end();
+                });
             }
-        } else if (method === 'POST') {
-            // Procesar datos recibidos con POST
-            console.log('Datos recibidos en POST:', body);
-
-            const response = `HTTP/1.1 201 Created\r\nContent-Type: text/html\r\n\r\n<h1>Recurso creado</h1>`;
-            socket.write(response);
         } else {
-            // Responder con un error si el método no es GET o POST
-            const response = `HTTP/1.1 405 Method Not Allowed\r\n\r\n<h1>Metodo no permitido</h1>`;
+            const response = `HTTP/1.1 405 Method Not Allowed\r\n\r\n<h1>Método no permitido</h1>`;
             socket.write(response);
+            socket.end();
         }
-
-        // Cerrar la conexión
-        socket.end();
     });
 
     socket.on('end', () => {
@@ -49,7 +70,6 @@ const server = net.createServer((socket) => {
     });
 });
 
-// El servidor escuchará en el puerto 8080
 server.listen(PORT, HOST, () => {
     console.log(`Servidor escuchando en http://${HOST}:${PORT}`);
 });
