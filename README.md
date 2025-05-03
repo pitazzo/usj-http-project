@@ -182,6 +182,26 @@ It is possible to propose any other optional features to the professor. A score 
 | Cookies                      | +1 pts.    | +0.8 pts.  | +0.6 pts.  | +0.4 pts.  | + 0.3 pts. |
 | Advanced CRUD                | +1 pts.    | +0.8 pts.  | +0.6 pts.  | +0.4 pts.  | + 0.3 pts. |
 
+## 📊 Grading rubric
+
+The final grade will be determined by applying the percentage of achievement to the group’s maximum achievable score, as defined in the rubric below. Scores exceeding 10 will be capped at 10.
+
+| Evaluation Area       | Criteria                                                | Max Points (%) |
+|-----------------------|----------------------------------------------------------|----------------|
+| **Technical Report** (30%) | Clarity and structure of the document                      | 6%              |
+|                       | Technical depth (decisions, architecture, challenges)     | 10%             |
+|                       | Work distribution and methodology                         | 6%              |
+|                       | Critical reflection / future improvements                 | 4%              |
+|                       | Transparency on AI tool usage                             | 4%              |
+| **Live Presentation** (30%) | Clarity and understanding of the project               | 10%             |
+|                       | Working demo of client-server interaction                 | 10%             |
+|                       | Correct answers to technical questions                    | 6%              |
+|                       | Time management (within 10 minutes)                       | 4%              |
+| **Code Quality** (40%) | Implementation of required/optional features              | 15%             |
+|                       | Good practices: naming, modularity, formatting            | 10%             |
+|                       | Technical soundness (concurrency, error handling, sockets)| 10%             |
+|                       | Clean version control history                             | 5%              |
+
 ## 🔁 Proposed work plan for mandatory features
 
 The project is broad and can be challenging, but it is entirely solvable by students of our degree and represents a great opportunity to learn new things. For those groups that feel somewhat overwhelmed and unclear on how to start the project, this work structure is proposed:
