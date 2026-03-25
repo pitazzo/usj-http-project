@@ -1,31 +1,58 @@
 const net = require("net");
 
-const handleRequest = (data) => {
+const cats = new Map();
+let nextId = 1;
+
+const parseRequest = (data) => {
   const request = data.toString();
-
+  const [requestLine, ...rest] = request.split("\r\n");
+  const [method, path] = requestLine.split(" ");
   const bodyIndex = request.indexOf("\r\n\r\n");
-  const body = request.substring(bodyIndex + 4);
+  const body = bodyIndex !== -1 ? request.substring(bodyIndex + 4) : "";
+  return { method, path, body };
+};
 
-  const response = `HTTP/1.1 200 OK
-Content-Type: text/plain
-Connection: close
+const jsonResponse = (statusCode, statusText, body) => {
+  const json = JSON.stringify(body);
+  return (
+    `HTTP/1.1 ${statusCode} ${statusText}\r\n` +
+    `Content-Type: application/json\r\n` +
+    `Content-Length: ${Buffer.byteLength(json)}\r\n` +
+    `Connection: close\r\n` +
+    `\r\n` +
+    json
+  );
+};
 
-Echoing back your request body:
-${body}`;
+const routes = {
+  "GET /cats": () => {
+    return jsonResponse(200, "OK", [...cats.values()]);
+  },
 
-  return response;
+  "POST /cats": (body) => {
+    const cat = JSON.parse(body);
+    cat.id = nextId++;
+    cats.set(cat.id, cat);
+    return jsonResponse(201, "Created", cat);
+  },
+};
+
+const handleRequest = ({ method, path, body }) => {
+  const routeKey = `${method} ${path}`;
+  const handler = routes[routeKey];
+
+  if (handler) {
+    return handler(body);
+  }
+
+  return jsonResponse(404, "Not Found", { error: "Not found" });
 };
 
 const server = net.createServer((socket) => {
-  console.log("Client connected");
-
   socket.on("data", (data) => {
-    const response = handleRequest(data);
+    const request = parseRequest(data);
+    const response = handleRequest(request);
     socket.end(response);
-  });
-
-  socket.on("end", () => {
-    console.log("Client disconnected");
   });
 });
 
